@@ -1,3 +1,11 @@
+/*Create the database of the project */
+CREATE DATABASE springproject;
+
+/*Connect to the database*/
+\c springproject;
+
+
+/*Create the entity Student*/
 CREATE TABLE  Student (
                           id INT  PRIMARY KEY,
                           firstName VARCHAR(100) not null ,
@@ -7,6 +15,8 @@ CREATE TABLE  Student (
                           email varchar(200) not null ,
                           studyYear int
 );
+
+/*Create the entity Fee*/
 CREATE TABLE Fee (
                      id INT PRIMARY KEY,
                      year VARCHAR(5) not null,
