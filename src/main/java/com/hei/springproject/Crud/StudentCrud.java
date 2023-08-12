@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class StudentCrud implements StudentRepository {
-    private final Connection connection;
+    private  Connection connection;
 
     public StudentCrud(Connection connection) {
         this.connection = connection;
