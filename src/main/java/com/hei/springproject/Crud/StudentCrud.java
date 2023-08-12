@@ -74,6 +74,13 @@ public class StudentCrud implements StudentRepository {
     @Override
     /*Method to delete the student*/
     public void deleteStudent(int studentId) {
+        String query = "DELETE FROM student WHERE id = ?";
 
+        try (PreparedStatement preparedStatement = connection.prepareStatement(query)) {
+            preparedStatement.setInt(1, studentId);
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 }
