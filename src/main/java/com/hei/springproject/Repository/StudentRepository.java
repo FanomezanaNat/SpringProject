@@ -5,6 +5,7 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 @Repository
+/*All methods for the entity Student*/
 public interface StudentRepository {
     void createStudent(Student student);
 
