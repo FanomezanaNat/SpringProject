@@ -12,9 +12,10 @@ public class Student {
     private int id;
     private String firstName;
     private String lastName;
-    private String reference;
     private String address;
     private int phoneNumber;
     private String email;
     private int studyYear;
+
+
 }
