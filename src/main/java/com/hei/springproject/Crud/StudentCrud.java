@@ -57,11 +57,22 @@ public class StudentCrud implements StudentRepository {
     }
 
     @Override
+    /*Method to update the information of a student*/
     public void updateStudent(Student student) {
+        String query = "UPDATE student SET studyYear=? WHERE id = ?";
+        try (PreparedStatement preparedStatement = connection.prepareStatement(query)) {
+            preparedStatement.setInt(1, student.getStudyYear());
+            preparedStatement.setInt(2, student.getId());
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
 
     }
 
     @Override
+    /*Method to delete the student*/
     public void deleteStudent(int studentId) {
 
     }
