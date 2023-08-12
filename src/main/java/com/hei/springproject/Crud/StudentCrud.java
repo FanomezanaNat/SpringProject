@@ -2,20 +2,19 @@ package com.hei.springproject.Crud;
 
 import com.hei.springproject.Entity.Student;
 import com.hei.springproject.Repository.StudentRepository;
-
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
+import java.sql.*;
+import java.util.ArrayList;
 import java.util.List;
 
 public class StudentCrud implements StudentRepository {
-    private Connection connection;
+    private final Connection connection;
 
     public StudentCrud(Connection connection) {
         this.connection = connection;
     }
 
     @Override
+    /*Method to create a student*/
     public void createStudent(Student student) {
         String query = "INSERT INTO Student (id,firstName,lastName,address,phoneNumber,email,studyYear) VALUES (?,?,?,?,?,?,?)";
         try (PreparedStatement preparedStatement = connection.prepareStatement(query)) {
@@ -35,6 +34,25 @@ public class StudentCrud implements StudentRepository {
 
     @Override
     public List<Student> getAllStudents() {
+        String query = "SELECT * FROM Student";
+        try (Statement statement = connection.createStatement()) {
+            ResultSet resultSet = statement.executeQuery(query);
+            List<Student> students = new ArrayList<>();
+            while (resultSet.next()) {
+                students.add(new Student(
+                        resultSet.getInt("id"),
+                        resultSet.getString("firstName"),
+                        resultSet.getString("lastName"),
+                        resultSet.getString("address"),
+                        resultSet.getInt("phoneNumber"),
+                        resultSet.getString("email"),
+                        resultSet.getInt("studyYear")
+                ));
+            }
+            return students;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
         return null;
     }
 
