@@ -43,6 +43,7 @@ public class StudentCrud implements StudentRepository {
                         resultSet.getInt("id"),
                         resultSet.getString("firstName"),
                         resultSet.getString("lastName"),
+                        resultSet.getString("reference"),
                         resultSet.getString("address"),
                         resultSet.getInt("phoneNumber"),
                         resultSet.getString("email"),

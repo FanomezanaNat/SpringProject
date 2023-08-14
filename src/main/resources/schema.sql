@@ -19,10 +19,11 @@ CREATE TABLE  Student (
 /*Create the entity Fee*/
 CREATE TABLE Fee (
                      id INT PRIMARY KEY,
+                     month varchar(50),
                      year VARCHAR(5) not null,
                      type VARCHAR(30) not null,
                      amountPaid int not null,
-                     paymentDate TIMESTAMP not null ,
-                     paymentStatus VARCHAR(30) not null
+                     paymentDate TIMESTAMP default current_timestamp,
+                     paymentStatus BOOLEAN default false
 
-)
+);
