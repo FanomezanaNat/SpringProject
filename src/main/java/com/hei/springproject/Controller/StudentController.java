@@ -17,7 +17,7 @@ public class StudentController {
         service.createStudent(student);
     }
 
-    @GetMapping("/listStudent")
+    @GetMapping("/getAllStudent")
     public List<Student> getAllStudents()  {
         return service.getAllStudent();
     }
