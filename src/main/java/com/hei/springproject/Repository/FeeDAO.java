@@ -5,10 +5,10 @@ import com.hei.springproject.Entity.Fee;
 import java.sql.Connection;
 import java.util.List;
 
-public class FeeCrud  {
+public class FeeDAO {
     private Connection connection;
 
-    public FeeCrud(Connection connection) {
+    public FeeDAO(Connection connection) {
         this.connection = connection;
     }
 
