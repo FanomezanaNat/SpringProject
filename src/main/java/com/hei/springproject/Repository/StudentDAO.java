@@ -1,30 +1,35 @@
 package com.hei.springproject.Crud;
 
+import com.hei.springproject.DatabaseConfiguration.DatabaseConnection;
 import com.hei.springproject.Entity.Student;
 import com.hei.springproject.Repository.StudentRepository;
+import org.springframework.stereotype.Repository;
+
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
+@Repository
 public class StudentCrud implements StudentRepository {
     private  Connection connection;
 
     public StudentCrud(Connection connection) {
-        this.connection = connection;
+        this.connection=new DatabaseConnection().getConnection();
     }
 
     @Override
     /*Method to create a student*/
     public void createStudent(Student student) {
-        String query = "INSERT INTO Student (id,firstName,lastName,address,phoneNumber,email,studyYear) VALUES (?,?,?,?,?,?,?)";
+        String query = "INSERT INTO Student (id,firstName,lastName,reference,phoneNumber,email,address,studyYear) VALUES (?,?,?,?,?,?,?,?)";
         try (PreparedStatement preparedStatement = connection.prepareStatement(query)) {
             preparedStatement.setInt(1, student.getId());
             preparedStatement.setString(2, student.getFirstName());
             preparedStatement.setString(3, student.getLastName());
-            preparedStatement.setString(4, student.getAddress());
+            preparedStatement.setString(4,student.getReference());
             preparedStatement.setInt(5, student.getPhoneNumber());
             preparedStatement.setString(6, student.getEmail());
-            preparedStatement.setInt(7, student.getStudyYear());
+            preparedStatement.setString(7, student.getAddress());
+            preparedStatement.setInt(8, student.getStudyYear());
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -44,9 +49,9 @@ public class StudentCrud implements StudentRepository {
                         resultSet.getString("firstName"),
                         resultSet.getString("lastName"),
                         resultSet.getString("reference"),
-                        resultSet.getString("address"),
                         resultSet.getInt("phoneNumber"),
                         resultSet.getString("email"),
+                        resultSet.getString("address"),
                         resultSet.getInt("studyYear")
                 ));
             }
