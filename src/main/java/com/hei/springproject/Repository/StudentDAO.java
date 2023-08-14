@@ -1,8 +1,7 @@
-package com.hei.springproject.Crud;
+package com.hei.springproject.Repository;
 
 import com.hei.springproject.DatabaseConfiguration.DatabaseConnection;
 import com.hei.springproject.Entity.Student;
-import com.hei.springproject.Repository.StudentRepository;
 import org.springframework.stereotype.Repository;
 
 import java.sql.*;
@@ -10,14 +9,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Repository
-public class StudentCrud implements StudentRepository {
+public class StudentDAO {
     private  Connection connection;
 
-    public StudentCrud(Connection connection) {
+    public StudentDAO(Connection connection) {
         this.connection=new DatabaseConnection().getConnection();
     }
 
-    @Override
+
     /*Method to create a student*/
     public void createStudent(Student student) {
         String query = "INSERT INTO Student (id,firstName,lastName,reference,phoneNumber,email,address,studyYear) VALUES (?,?,?,?,?,?,?,?)";
@@ -37,7 +36,7 @@ public class StudentCrud implements StudentRepository {
     }
 
 
-    @Override
+
     public List<Student> getAllStudents() {
         String query = "SELECT * FROM Student";
         try (Statement statement = connection.createStatement()) {
@@ -62,7 +61,7 @@ public class StudentCrud implements StudentRepository {
         return null;
     }
 
-    @Override
+
     /*Method to update the information of a student*/
     public void updateStudent(Student student) {
         String query = "UPDATE student SET studyYear=? WHERE id = ?";
@@ -77,7 +76,7 @@ public class StudentCrud implements StudentRepository {
 
     }
 
-    @Override
+
     /*Method to delete the student*/
     public void deleteStudent(int studentId) {
         String query = "DELETE FROM student WHERE id = ?";
