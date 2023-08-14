@@ -4,7 +4,7 @@ import com.hei.springproject.Entity.Student;
 import com.hei.springproject.Service.StudentService;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
-
+@RestController
 public class StudentController {
     private StudentService service;
 
