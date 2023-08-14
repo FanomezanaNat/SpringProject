@@ -11,9 +11,9 @@ CREATE TABLE  Student (
                           firstName VARCHAR(100) not null ,
                           lastName VARCHAR(100) not null ,
                           reference VARCHAR(10),
-                          address varchar(250) not null ,
                           phoneNumber int ,
                           email varchar(200) not null ,
+                          address varchar(250) not null,
                           studyYear int
 );
 
@@ -25,6 +25,7 @@ CREATE TABLE Fee (
                      type VARCHAR(30) not null,
                      amountPaid int not null,
                      paymentDate TIMESTAMP default current_timestamp,
-                     paymentStatus BOOLEAN default false
+                     paymentStatus BOOLEAN default false,
+                     idStudent int references Student(id)
 
 );
