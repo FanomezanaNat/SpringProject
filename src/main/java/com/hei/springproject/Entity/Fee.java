@@ -2,7 +2,8 @@ package com.hei.springproject.Entity;
 
 import lombok.*;
 
-import java.util.Date;
+import java.sql.Date;
+
 @Getter
 @Setter
 @AllArgsConstructor
@@ -11,9 +12,11 @@ import java.util.Date;
 @NoArgsConstructor
 public class Fee {
     private int id;
+    private String month;
     private int year;
     private String type;
     private int amountPaid;
     private Date paymentDate;
-    private String paymentStatus;
+    private Boolean paymentStatus;
+    private int idStudent;
 }
