@@ -1,11 +1,12 @@
 package com.hei.springproject.Repository;
 
 import com.hei.springproject.Entity.Fee;
+import org.springframework.stereotype.Repository;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
-
+@Repository
 public class FeeDAO {
     private Connection connection;
 
