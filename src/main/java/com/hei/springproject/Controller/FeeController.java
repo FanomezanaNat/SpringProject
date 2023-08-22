@@ -1,7 +1,6 @@
 package com.hei.springproject.Controller;
 
 import com.hei.springproject.Entity.Fee;
-import com.hei.springproject.Entity.Student;
 import com.hei.springproject.Service.FeeService;
 import org.springframework.web.bind.annotation.*;
 
