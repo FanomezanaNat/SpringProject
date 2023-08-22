@@ -1,0 +1,28 @@
+[{
+  "id": 10,
+  "firstname": "Linnet",
+  "lastname": "Boots",
+  "reference": "STD87851",
+  "phonenumber": 9942249,
+  "email": "Linnet@yahoo.fr",
+  "address": "8 Shelley Place",
+  "studyyear": 3
+}, {
+  "id": 13,
+  "firstname": "Arny",
+  "lastname": "O'Devey",
+  "reference": "STD61850",
+  "phonenumber": 49997118,
+  "email": "aodevey1@delicious.com",
+  "address": "41994 Graedel Crossing",
+  "studyyear": 2
+}, {
+  "id": 12,
+  "firstname": "Aura",
+  "lastname": "Van den Bosch",
+  "reference": "STD87949",
+  "phonenumber": null,
+  "email": "Aura@gmail.com",
+  "address": "97684 Havey Drive",
+  "studyyear": 1
+}]
