@@ -1,0 +1,32 @@
+[
+  {
+    "id": 11,
+    "month": "May",
+    "year": 2022,
+    "type": "annually",
+    "amountpaid": 271166,
+    "paymentdate": "2022-11-27",
+    "paymentstatus": false,
+    "idstudent": 11
+  },
+  {
+    "id": 12,
+    "month": "January",
+    "year": 2023,
+    "type": "monthly",
+    "amountpaid": 190499,
+    "paymentdate": "2022-05-22",
+    "paymentstatus": false,
+    "idstudent": 12
+  },
+  {
+    "id": 13,
+    "month": "August",
+    "year": 2022,
+    "type": "monthly",
+    "amountpaid": 133842,
+    "paymentdate": "2022-08-08",
+    "paymentstatus": false,
+    "idstudent": 13
+  }
+]
