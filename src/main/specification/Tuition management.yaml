@@ -1,0 +1,303 @@
+openapi: 3.0.3
+info:
+  title: HEI tuition management - OpenAPI 
+  description: |-
+    This is a sample HEI tuition management Server based on the OpenAPI 3.0 specification.
+  version: 1.0.11
+servers:
+  - url: https://localhost/8080
+tags:
+  - name: student
+  - name: fee
+paths:
+  /student/updateStudent/{id}: # Corrected parameter name
+    put:
+      tags:
+        - student
+      summary: Update an existing student
+      description: Update an existing student by Id
+      operationId: updateStudent # Corrected operationId
+      parameters:
+        - name: id # Corrected parameter name
+          in: path
+          description: ID of student to update # Updated description
+          required: true
+          schema:
+            type: integer
+            format: int64
+      requestBody:
+        description: Update an existing student
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/student' # Corrected schema reference
+        required: true
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/student'          
+        '400':
+          description: Invalid ID supplied
+        '404':
+          description: Student not found # Updated description
+        '405':
+          description: Validation exception
+
+  /student/getStudent:
+    get:
+      tags:
+        - student
+      summary: Find all students
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/student'
+
+  /student/deleteStudent/{id}: # Corrected parameter name
+    delete:
+      tags:
+        - student
+      summary: Delete student by Id
+      operationId: deleteStudentById
+      parameters:
+        - name: id 
+          in: path
+          description: ID of student to delete
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                type: object
+                items:
+                  $ref: '#/components/schemas/student'
+        '400':
+          description: Invalid tag value
+
+  /student/createStudent:
+    post:
+      tags:
+        - student
+      summary: Create student
+      description: Create new student
+      operationId: createStudent
+      requestBody:
+        description: Created user object
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/student' # Corrected schema reference
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/student'
+  
+  /student/updateFee/{id}: # Corrected parameter name
+    put:
+      tags:
+        - fee
+      summary: Update an existing fee
+      description: Update an existing fee by Id
+      operationId: updateFee # Corrected operationId
+      parameters:
+        - name: id # Corrected parameter name
+          in: path
+          description: ID of student to update # Updated description
+          required: true
+          schema:
+            type: integer
+            format: int64
+      requestBody:
+        description: Update an existing student
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/fee' # Corrected schema reference
+        required: true
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/fee'          
+        '400':
+          description: Invalid ID supplied
+        '404':
+          description: Student not found # Updated description
+        '405':
+          description: Validation exception
+
+  /student/getFee:
+    get:
+      tags:
+        - fee
+      summary: Find all fee
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/fee'
+
+  /student/deleteFee/{id}: # Corrected parameter name
+    delete:
+      tags:
+        - fee
+      summary: Delete student by Id
+      operationId: deleteFeetById
+      parameters:
+        - name: id 
+          in: path
+          description: ID of student to delete
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                type: object
+                items:
+                  $ref: '#/components/schemas/fee'
+        '400':
+          description: Invalid tag value
+
+  /student/createFee:
+    post:
+      tags:
+        - fee
+      summary: Create fee
+      description: Create new fee
+      operationId: createFee
+      requestBody:
+        description: Created user object
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/fee' # Corrected schema reference
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/fee'
+                
+
+components:
+  schemas:
+    student:
+      required:
+        - id
+        - firstName
+        - lastName
+        - reference
+        - email
+        - studyYear
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+          example: 10
+        firstName:
+          type: string
+          example: John
+        lastName:
+          type: string
+          example: James
+        reference:
+          type: string
+          example: theUser
+        phoneNumber:
+          type: integer
+          format: int64
+          example: 12345
+        email:
+          type: string
+          example: john@email.com
+        address:
+          type: string
+          example: 123 Main St
+        studyYear:
+          type: integer
+          format: int32
+          example: 1
+    fee:
+      required:
+        - id
+        - paymentDate
+        - year
+        - type
+        - amountPaid
+        - paymentStatus
+        - idStudent
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+          example: 10
+        month:
+          type: string
+          example: January
+        year:
+          type: integer
+          format: int64
+          example: 2023
+        type:
+          type: string
+          example: Monthly
+        amountPaid:
+          type: integer
+          format: int64
+          example: 100
+        paymentDate:
+          type: string
+          format: date
+          example: 2023-08-22
+        paymentStatus:
+          type: boolean
+          example: true
+        idStudent:
+          type: integer
+          format: int64
+          example: 1
+  requestBodies:
+    Pet:
+      description: fee object that needs to be added
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/fee'
+    studentArray:
+      description: List of student object
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              $ref: '#/components/schemas/student'
