@@ -2,9 +2,10 @@ package com.hei.springproject.Service;
 
 import com.hei.springproject.Entity.Fee;
 import com.hei.springproject.Repository.FeeDAO;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
-
+@Service
 public class FeeService {
     private FeeDAO dao;
 
