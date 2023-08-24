@@ -25,6 +25,9 @@ public class StudentService {
     public void updateStudent(Student student) {
         dao.updateStudent(student);
     }
+    public List<Student> getStudent(String firstName){
+        return dao.getStudent(firstName);
+    }
 
 
 }
