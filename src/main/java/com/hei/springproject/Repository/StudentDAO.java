@@ -10,10 +10,10 @@ import java.util.List;
 
 @Repository
 public class StudentDAO {
-    private  Connection connection;
+    private Connection connection;
 
     public StudentDAO(Connection connection) {
-        this.connection=new DatabaseConnection().getConnection();
+        this.connection = new DatabaseConnection().getConnection();
     }
 
 
@@ -24,7 +24,7 @@ public class StudentDAO {
             preparedStatement.setInt(1, student.getId());
             preparedStatement.setString(2, student.getFirstName());
             preparedStatement.setString(3, student.getLastName());
-            preparedStatement.setString(4,student.getReference());
+            preparedStatement.setString(4, student.getReference());
             preparedStatement.setInt(5, student.getPhoneNumber());
             preparedStatement.setString(6, student.getEmail());
             preparedStatement.setString(7, student.getAddress());
@@ -34,7 +34,6 @@ public class StudentDAO {
             e.printStackTrace();
         }
     }
-
 
 
     public List<Student> getAllStudents() {
@@ -87,5 +86,30 @@ public class StudentDAO {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+    }
+
+    public List<Student> getStudent(String firstName) {
+        String query = "SELECT * FROM Student where firstName=?";
+        try (PreparedStatement preparedStatement = connection.prepareStatement(query)) {
+            preparedStatement.setString(1, firstName);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            List<Student> students = new ArrayList<>();
+            while (resultSet.next()) {
+                students.add(new Student(
+                        resultSet.getInt("id"),
+                        resultSet.getString("firstName"),
+                        resultSet.getString("lastName"),
+                        resultSet.getString("reference"),
+                        resultSet.getInt("phoneNumber"),
+                        resultSet.getString("email"),
+                        resultSet.getString("address"),
+                        resultSet.getInt("studyYear")
+                ));
+            }
+            return students;
+        } catch (SQLException e) {
+            e.getMessage();
+        }
+        return null;
     }
 }
