@@ -16,7 +16,8 @@ public class FeeDAO {
     }
 
 
-    public void createFee(Fee fee) {
+/* Method to create Fee*/
+public void createFee(Fee fee) {
         String query = "INSERT FEE (id,month,year,type,amountPaid,paymentDate,paymentStatus,idStudent)VALUES(?,?,?,?,?,?,?,?)";
         try (PreparedStatement preparedStatement = connection.prepareStatement(query)) {
             preparedStatement.setInt(1, fee.getId());
@@ -33,7 +34,7 @@ public class FeeDAO {
         }
 
     }
-
+/*Method to  update fee*/
     public void updateFee(Fee fee) {
         String query = "UPDATE fee set paymentStatus where id=?";
         try (PreparedStatement preparedStatement = connection.prepareStatement(query)) {
@@ -47,7 +48,7 @@ public class FeeDAO {
 
     }
 
-
+/*Method to get all fees*/
     public List<Fee> getAllFees() {
         String query = "SELECT * FROM Fee";
         try (Statement statement = connection.createStatement()) {
@@ -72,7 +73,7 @@ public class FeeDAO {
         return null;
     }
 
-
+/*Method to delete fee by his id*/
     public void deleteFee(int feeId) {
         String query = "DELETE FROM fee where id=?";
         try (PreparedStatement preparedStatement = connection.prepareStatement(query)) {
@@ -84,6 +85,7 @@ public class FeeDAO {
 
     }
 
+    /*Method to calculate the total payment in a specific month in specific year*/
     public int calculateTotalPaymentsForMonth(String month, int year) {
         String query = "SELECT SUM(amountPaid) AS total FROM Fee WHERE month = ? AND year = ?";
         try (PreparedStatement preparedStatement = connection.prepareStatement(query)) {
@@ -98,7 +100,7 @@ public class FeeDAO {
         }
         return 0;
     }
-
+/*Method to know all the payment which is late*/
     public List<Fee> getLatePayments(java.util.Date dueDate) {
         String query = "SELECT * FROM Fee WHERE paymentDate > ? AND paymentStatus = false";
         try (PreparedStatement preparedStatement = connection.prepareStatement(query)) {
@@ -123,7 +125,7 @@ public class FeeDAO {
         }
         return new ArrayList<>();
     }
-
+/*Method to know payment's type*/
     public List<Fee> getPaymentsByType(String type) {
         String query = "SELECT * FROM Fee WHERE type = ?";
         try (PreparedStatement preparedStatement = connection.prepareStatement(query)) {
