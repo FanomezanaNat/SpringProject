@@ -1,6 +1,6 @@
 openapi: 3.0.3
 info:
-  title: HEI tuition management - OpenAPI 
+  title: HEI tuition management - OpenAPI
   description: |-
     This is a sample HEI tuition management Server based on the OpenAPI 3.0 specification.
   version: 1.0.11
@@ -10,7 +10,41 @@ tags:
   - name: student
   - name: fee
 paths:
-  /student/updateStudent/{id}: # Corrected parameter name
+  /createStudent:
+    post:
+      tags:
+        - student
+      summary: Create student
+      description: Create new student
+      operationId: createStudent
+      requestBody:
+        description: Created user object
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/student' # Corrected schema reference
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/student'
+  /student/getStudent:
+    get:
+      tags:
+        - student
+      summary: Find all students
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/student'
+  /updateStudent/{id}: # Corrected parameter name
     put:
       tags:
         - student
@@ -38,29 +72,13 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/student'          
+                $ref: '#/components/schemas/student'
         '400':
           description: Invalid ID supplied
         '404':
           description: Student not found # Updated description
         '405':
           description: Validation exception
-
-  /student/getStudent:
-    get:
-      tags:
-        - student
-      summary: Find all students
-      responses:
-        '200':
-          description: Successful operation
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/student'
-
   /student/deleteStudent/{id}: # Corrected parameter name
     delete:
       tags:
@@ -68,7 +86,7 @@ paths:
       summary: Delete student by Id
       operationId: deleteStudentById
       parameters:
-        - name: id 
+        - name: id
           in: path
           description: ID of student to delete
           required: true
@@ -87,28 +105,44 @@ paths:
         '400':
           description: Invalid tag value
 
-  /student/createStudent:
+
+
+
+  /createFee:
     post:
       tags:
-        - student
-      summary: Create student
-      description: Create new student
-      operationId: createStudent
+        - fee
+      summary: Create fee
+      description: Create new fee
+      operationId: createFee
       requestBody:
         description: Created user object
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/student' # Corrected schema reference
+              $ref: '#/components/schemas/fee' # Corrected schema reference
       responses:
         '200':
           description: Successful operation
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/student'
-  
-  /student/updateFee/{id}: # Corrected parameter name
+                $ref: '#/components/schemas/fee'
+  /getAllFee:
+    get:
+      tags:
+        - fee
+      summary: Find all fee
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/fee'
+  /updateFee/{id}: # Corrected parameter name
     put:
       tags:
         - fee
@@ -136,37 +170,21 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/fee'          
+                $ref: '#/components/schemas/fee'
         '400':
           description: Invalid ID supplied
         '404':
           description: Student not found # Updated description
         '405':
           description: Validation exception
-
-  /student/getFee:
-    get:
-      tags:
-        - fee
-      summary: Find all fee
-      responses:
-        '200':
-          description: Successful operation
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/fee'
-
-  /student/deleteFee/{id}: # Corrected parameter name
+  /deleteFee/{id}: # Corrected parameter name
     delete:
       tags:
         - fee
       summary: Delete student by Id
       operationId: deleteFeetById
       parameters:
-        - name: id 
+        - name: id
           in: path
           description: ID of student to delete
           required: true
@@ -184,28 +202,82 @@ paths:
                   $ref: '#/components/schemas/fee'
         '400':
           description: Invalid tag value
-
-  /student/createFee:
-    post:
+  /getPaymentsByType:
+    get:
       tags:
         - fee
-      summary: Create fee
-      description: Create new fee
-      operationId: createFee
-      requestBody:
-        description: Created user object
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/fee' # Corrected schema reference
+      summary: Get payments by type
+      description: Get payments of fees by type
+      operationId: getPaymentsByType
+      parameters:
+        - name: type
+          in: query
+          description: Type of fee
+          required: true
+          schema:
+            type: string
       responses:
         '200':
           description: Successful operation
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/fee'
-                
+                type: array
+                items:
+                  $ref: '#/components/schemas/fee'
+  /getLatePayments:
+    get:
+      tags:
+        - fee
+      summary: Get late payments
+      description: Get payments of late fees
+      operationId: getLatePayments
+      parameters:
+        - name: dueDate
+          in: query
+          description: Due date for late payments
+          required: true
+          schema:
+            type: string
+            format: date
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/fee'
+  /calculateTotalPaymentsForMonth:
+    get:
+      tags:
+        - fee
+      summary: Calculate total payments for a month
+      description: Calculate the total payments of fees for a specific month and year
+      operationId: calculateTotalPaymentsForMonth
+      parameters:
+        - name: month
+          in: query
+          description: Month for total payment calculation
+          required: true
+          schema:
+            type: string
+        - name: year
+          in: query
+          description: Year for total payment calculation
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                type: integer
+
+
 
 components:
   schemas:
