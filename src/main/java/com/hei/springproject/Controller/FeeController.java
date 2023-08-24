@@ -4,7 +4,6 @@ import com.hei.springproject.Entity.Fee;
 import com.hei.springproject.Service.FeeService;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.Date;
 import java.util.List;
 
@@ -26,8 +25,8 @@ public class FeeController {
         return service.getAllFees();
 
     }
-    @GetMapping("/byType/{type}")
-    public List<Fee> getPaymentsByType(@PathVariable String type) {
+    @GetMapping("/byType")
+    public List<Fee> getPaymentsByType(@RequestParam String type) {
         return service.getPaymentByType(type);
     }
 
