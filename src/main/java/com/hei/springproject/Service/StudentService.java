@@ -28,6 +28,9 @@ public class StudentService {
     public List<Student> getStudent(String firstName){
         return dao.getStudent(firstName);
     }
+    public List<Student> getStudentByStudyYear(int studyYear){
+        return dao.getStudentByStudyYear(studyYear);
+    }
 
 
 }
