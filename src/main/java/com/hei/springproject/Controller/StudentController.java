@@ -31,14 +31,14 @@ public class StudentController {
         return service.getStudentByStudyYear(studyYear);
     }
 
-    @PutMapping("/updateStudent/{id}")
-    public void updateStudent(@PathVariable int id, @RequestBody Student student) {
+    @PutMapping("/updateStudent")
+    public void updateStudent(@RequestParam int id, @RequestBody Student student) {
         student.setId(id);
         service.updateStudent(student);
     }
 
-    @DeleteMapping("/deleteStudent/{id}")
-    public void deleteStudent(@PathVariable int id) {
+    @DeleteMapping("/deleteStudent")
+    public void deleteStudent(@RequestParam int id) {
         service.deleteStudent(id);
     }
 }
