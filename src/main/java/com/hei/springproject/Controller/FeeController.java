@@ -39,14 +39,14 @@ public class FeeController {
     public int calculateTotalPaymentsForMonth(@RequestParam(name = "month") String month,@RequestParam( name = "year") int year) {
         return service.calculateTotalPaymentsForMonth(month, year);
     }
-    @PutMapping("/updateFee/{id}")
-    public void updateStudent(@PathVariable int id, @RequestBody Fee fee) {
+    @PutMapping("/updateFee")
+    public void updateStudent(@RequestParam int id, @RequestBody Fee fee) {
         fee.setId(id);
         service.updateFee(fee);
     }
 
-    @DeleteMapping("/deleteFeet/{id}")
-    public void deleteStudent(@PathVariable int id) {
+    @DeleteMapping("/deleteFeet")
+    public void deleteStudent(@RequestParam int id) {
         service.deleteFee(id);
     }
 
