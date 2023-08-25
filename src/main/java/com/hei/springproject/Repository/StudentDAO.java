@@ -1,7 +1,6 @@
 package com.hei.springproject.Repository;
 
 import com.hei.springproject.DatabaseConfiguration.DatabaseConnection;
-import com.hei.springproject.Entity.Fee;
 import com.hei.springproject.Entity.Student;
 import org.springframework.stereotype.Repository;
 
