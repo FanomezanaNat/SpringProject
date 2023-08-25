@@ -22,10 +22,15 @@ public class StudentController {
         return service.getAllStudent();
     }
 
-    @GetMapping("/getStudent/{firstName}")
-    public List<Student> getStudent(@PathVariable String firstName){
+    @GetMapping("/getStudent")
+    public List<Student> getStudent(@RequestParam String firstName){
         return service.getStudent(firstName);
     }
+    @GetMapping("/getStudyByStudyYear")
+    public List<Student> getStudentByStudyYear(@RequestParam int studyYear){
+        return service.getStudentByStudyYear(studyYear);
+    }
+
     @PutMapping("/updateStudent/{id}")
     public void updateStudent(@PathVariable int id, @RequestBody Student student) {
         student.setId(id);
