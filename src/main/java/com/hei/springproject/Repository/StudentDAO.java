@@ -1,6 +1,7 @@
 package com.hei.springproject.Repository;
 
 import com.hei.springproject.DatabaseConfiguration.DatabaseConnection;
+import com.hei.springproject.Entity.Fee;
 import com.hei.springproject.Entity.Student;
 import org.springframework.stereotype.Repository;
 
@@ -111,5 +112,31 @@ public class StudentDAO {
             e.getMessage();
         }
         return null;
+    }
+
+    public List<Student> getStudentByStudyYear(int studyYear) {
+        String query = "SELECT * FROM Student where studyYear=?";
+        try (PreparedStatement preparedStatement = connection.prepareStatement(query)) {
+            preparedStatement.setInt(1, studyYear);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            List<Student> getStudentByStudyYear = new ArrayList<>();
+            while (resultSet.next()) {
+                getStudentByStudyYear.add(new Student(
+                        resultSet.getInt("id"),
+                        resultSet.getString("firstName"),
+                        resultSet.getString("lastName"),
+                        resultSet.getString("reference"),
+                        resultSet.getInt("phoneNumber"),
+                        resultSet.getString("email"),
+                        resultSet.getString("address"),
+                        resultSet.getInt("studyYear")
+                ));
+            }
+            return getStudentByStudyYear;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return new ArrayList<>();
     }
 }
