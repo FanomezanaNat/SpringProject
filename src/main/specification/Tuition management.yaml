@@ -30,7 +30,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/student'
-  /student/getStudent:
+  /getAllStudent:
     get:
       tags:
         - student
@@ -44,6 +44,49 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/student'
+  /getStudent:
+    get:
+      tags:
+        - student
+      summary: "get a only student"
+      operationId: "getStudent"
+      parameters:
+        - name: "firstName"
+          in: "query"
+          required: true
+          schema:
+            type: "string"
+      responses:
+        "200":
+          description: "OK"
+          content:
+            '*/*':
+              schema:
+                type: "array"
+                items:
+                  $ref: "#/components/schemas/student"
+  /getStudyByStudyYear:
+    get:
+      tags:
+        - student
+      summary: "get student by his study year"
+      operationId: "getStudentByStudyYear"
+      parameters:
+        - name: "studyYear"
+          in: "query"
+          required: true
+          schema:
+            type: "integer"
+            format: "int32"
+      responses:
+        "200":
+          description: "OK"
+          content:
+            '*/*':
+              schema:
+                type: "array"
+                items:
+                  $ref: "#/components/schemas/student"
   /updateStudent/{id}: # Corrected parameter name
     put:
       tags:
@@ -104,6 +147,7 @@ paths:
                   $ref: '#/components/schemas/student'
         '400':
           description: Invalid tag value
+
 
 
 
