@@ -26,13 +26,13 @@ To set up the required database for this project and create the tables, follow t
 
 1. Ensure you have PostgreSQL installed and running.
 
-2. Create a database named `springproject`.
-
-3.  open the `schema.sql` file located in the `src/main/resources` directory.
+3.  open the `schema.sql` file located in the `src/main/resources` directory to create a database named `springproject`.
 
 4.  built the database with  `schema.sql`
 
-5. After executing the script, the database will be configured with the necessary tables, ready to be used by the application.
+5. insert datamock in database with `Student.sql ` or `Fee.sql`in the `src/main/resources` .
+
+6. After executing the script, the database will be configured with the necessary tables, ready to be used by the application.
 
 Ensure that the database connection parameters in the `src/main/resources/application.properties` and
 `src/main/com.hei.springproject/DatabaseConfiguration/setting.java `file match your PostgreSQL configuration.
@@ -62,10 +62,3 @@ To access and explore the API documentation:
 2. Open the OpenAPI Specification file, typically named `openapi.yaml` or `swagger.yaml`, using your preferred text editor or API documentation tool.
 
 3. You can also view the API documentation using Swagger UI. Run your project and access Swagger UI at [Swagger UI Documentation](https://petstore.swagger.io/?url=https://raw.githubusercontent.com/FanomezanaNat/SpringProject/main/src/main/specification/Tuition%20management.yaml) in a web browser.
-
-
-
-
-
-
-
