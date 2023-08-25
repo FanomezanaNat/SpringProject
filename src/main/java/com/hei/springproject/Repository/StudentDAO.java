@@ -59,8 +59,6 @@ public class StudentDAO {
         }
         return null;
     }
-
-
     /*Method to update the information of a student*/
     public void updateStudent(Student student) {
         String query = "UPDATE student SET studyYear=? WHERE id = ?";
