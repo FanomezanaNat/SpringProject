@@ -59,6 +59,6 @@ To access and explore the API documentation:
 
 1. Navigate to the `src/main/specification` directory in your project.
 
-2. Open the OpenAPI Specification file, typically named `openapi.yaml` or `swagger.yaml`, using your preferred text editor or API documentation tool.
+2. Open the OpenAPI Specification file, typically named `openapi.yaml` , using your preferred text editor or API documentation tool.
 
 3. You can also view the API documentation using Swagger UI. Run your project and access Swagger UI at [Swagger UI Documentation](https://petstore.swagger.io/?url=https://raw.githubusercontent.com/FanomezanaNat/SpringProject/main/src/main/specification/Tuition%20management.yaml) in a web browser.
